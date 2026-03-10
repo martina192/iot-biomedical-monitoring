@@ -1,0 +1,176 @@
+[
+    {
+        "id": "74a452ea75a318d9",
+        "type": "influxdb3-write",
+        "z": "81ffad783641c8e3",
+        "influxdb": "b0c45ca8fb282401",
+        "name": "",
+        "measurement": "",
+        "database": "",
+        "x": 1200,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bcd52bf33b87c3e6",
+        "type": "mqtt in",
+        "z": "81ffad783641c8e3",
+        "name": "",
+        "topic": "v3/arduino-g5@ttn/devices/arduino-mkr-g5/up",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "7ba42cd5cf0cc033",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 290,
+        "y": 380,
+        "wires": [
+            [
+                "763403ae68cce460",
+                "99e172441cd1edac"
+            ]
+        ]
+    },
+    {
+        "id": "763403ae68cce460",
+        "type": "debug",
+        "z": "81ffad783641c8e3",
+        "name": "Msg payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "99e172441cd1edac",
+        "type": "function",
+        "z": "81ffad783641c8e3",
+        "name": "Get uplink decoded payload",
+        "func": "let decoded = msg.payload.uplink_message.decoded_payload;\nlet device_id = msg.payload.end_device_ids.device_id;\n\n\nreturn {\n    payload: decoded,\n    device_id: device_id\n};\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 420,
+        "wires": [
+            [
+                "876e24bc40a4de26",
+                "91b73a702d9a5282"
+            ]
+        ]
+    },
+    {
+        "id": "876e24bc40a4de26",
+        "type": "debug",
+        "z": "81ffad783641c8e3",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 930,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "91b73a702d9a5282",
+        "type": "function",
+        "z": "81ffad783641c8e3",
+        "name": "Integrating data base",
+        "func": "// --- 0. Llegim el payload decodificat ---\nconst decoded = msg.payload || {};\n\n\n// --- 1. Assignem valors sense usar \"??\" ---\n\n\nlet bpm;\nif (typeof decoded.bpm !== \"undefined\" && decoded.bpm !== null) {\n    bpm = Number(decoded.bpm);\n} else {\n    bpm = 0;\n}\n\n\nlet arrit;\nif (typeof decoded.arritimia !== \"undefined\" && decoded.arritimia !== null) {\n    arrit = Number(decoded.arritimia);\n} else {\n    arrit = 0;\n}\n\n\nlet length;\nif (typeof decoded.length !== \"undefined\" && decoded.length !== null) {\n    length = Number(decoded.length);\n} else {\n    length = 0;\n}\n\n\nlet typeVal;\nif (typeof decoded.type !== \"undefined\" && decoded.type !== null) {\n    typeVal = Number(decoded.type);\n} else {\n    typeVal = 0;\n}\n\n\n\n\n// --- 2. Convertir arritmia amb IF (sense ternari) ---\nlet arritmia_flag;\nif (arrit) {\n    arritmia_flag = 1;\n} else {\n    arritmia_flag = 0;\n}\n\n\n\n\n// --- 3. Informació del dispositiu ---\nlet device_id;\nif (typeof msg.device_id !== \"undefined\") {\n    device_id = msg.device_id;\n} else {\n    device_id = \"unknown_device\";\n}\n\n\nlet measurement = \"ritmo_cardiaco\";\n\n\n\n\n// --- 4. Construir Line Protocol ---\nlet lineProtocol =\n    measurement +\n    \",device_id=\" + device_id +\n    \" bpm=\" + bpm +\n    \",arritmia_flag=\" + arritmia_flag + \"i\" +\n    \",length=\" + length + \"i\" +\n    \",type=\" + typeVal + \"i\";\n\n\n\n\n// --- 5. Dades per al node InfluxDB3 ---\nmsg.payload = lineProtocol;\nmsg.organization = \"lorabit\";\nmsg.measurement = measurement;\n\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 420,
+        "wires": [
+            [
+                "74a452ea75a318d9",
+                "298be4fe98b4a070"
+            ]
+        ]
+    },
+    {
+        "id": "298be4fe98b4a070",
+        "type": "debug",
+        "z": "81ffad783641c8e3",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1180,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "b0c45ca8fb282401",
+        "type": "influxdb3-config",
+        "name": "LOCAL_INFLUXDB",
+        "host": "http://influxdb:8181",
+        "database": "bitalino_data"
+    },
+    {
+        "id": "7ba42cd5cf0cc033",
+        "type": "mqtt-broker",
+        "name": "TTS",
+        "broker": "eu1.cloud.thethings.network",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f8d51495d4eeafc9",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-influxdb3": "1.0.2"
+        }
+    }
+]

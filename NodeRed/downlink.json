@@ -1,0 +1,374 @@
+[
+    {
+        "id": "15cf3116b22dc662",
+        "type": "http in",
+        "z": "ec053adf86947d2b",
+        "name": "POST /alert/downlink",
+        "url": "/alert/downlink",
+        "method": "post",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 460,
+        "y": 600,
+        "wires": [
+            [
+                "2d0d1898635fdc5a",
+                "6675a25219148f35"
+            ]
+        ]
+    },
+    {
+        "id": "2d0d1898635fdc5a",
+        "type": "debug",
+        "z": "ec053adf86947d2b",
+        "name": "Payload entrante (Grafana)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "6675a25219148f35",
+        "type": "switch",
+        "z": "ec053adf86947d2b",
+        "name": "msg.payload.action",
+        "property": "payload.action",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "BUZZ ON",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "BUZZ OFF",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "LED ON",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "LED OFF",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 5,
+        "x": 740,
+        "y": 600,
+        "wires": [
+            [
+                "1a2dcf2a9fd37f1a"
+            ],
+            [
+                "b5516d648113a4f7"
+            ],
+            [
+                "dcc5f1aad0cb1147"
+            ],
+            [
+                "e036649d2e35a8fc"
+            ],
+            [
+                "57f425c50be1e7a3"
+            ]
+        ]
+    },
+    {
+        "id": "1a2dcf2a9fd37f1a",
+        "type": "change",
+        "z": "ec053adf86947d2b",
+        "name": "Preparar BUZZ ON (TTN)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "BUZZ_ON",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "x": 1070,
+        "y": 540,
+        "wires": [
+            [
+                "9ea815580f6a55ac",
+                "14873909b32aff81"
+            ]
+        ]
+    },
+    {
+        "id": "b5516d648113a4f7",
+        "type": "change",
+        "z": "ec053adf86947d2b",
+        "name": "Preparar BUZZ OFF (TTN)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "BUZZ_OFF",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "x": 1100,
+        "y": 580,
+        "wires": [
+            [
+                "9ea815580f6a55ac",
+                "541122551aa52d2b"
+            ]
+        ]
+    },
+    {
+        "id": "9ea815580f6a55ac",
+        "type": "http response",
+        "z": "ec053adf86947d2b",
+        "name": "200 OK a Grafana",
+        "statusCode": "200",
+        "headers": {},
+        "x": 1650,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "8f3ef477ed4743ab",
+        "type": "mqtt out",
+        "z": "ec053adf86947d2b",
+        "name": "Publicar en TTN/MQTT",
+        "topic": "v3/arduino-g5@ttn/devices/arduino-mkr-g5/down/push",
+        "qos": "0",
+        "retain": "false",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "7ba42cd5cf0cc033",
+        "x": 1670,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "dcc5f1aad0cb1147",
+        "type": "change",
+        "z": "ec053adf86947d2b",
+        "name": "Preparar LED ON (TTN)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "LED_ON",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "x": 1070,
+        "y": 620,
+        "wires": [
+            [
+                "9ea815580f6a55ac",
+                "89036c15b5574818"
+            ]
+        ]
+    },
+    {
+        "id": "e036649d2e35a8fc",
+        "type": "change",
+        "z": "ec053adf86947d2b",
+        "name": "Preparar LED OFF (TTN)",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "LED_OFF",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "x": 1090,
+        "y": 660,
+        "wires": [
+            [
+                "9ea815580f6a55ac",
+                "0b2199ab7f43c2ee"
+            ]
+        ]
+    },
+    {
+        "id": "57f425c50be1e7a3",
+        "type": "http response",
+        "z": "ec053adf86947d2b",
+        "name": "240 OK a Grafana",
+        "statusCode": "240",
+        "headers": {},
+        "x": 1050,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "14873909b32aff81",
+        "type": "function",
+        "z": "ec053adf86947d2b",
+        "name": "BUZZ_ON",
+        "func": "return{\n    \"payload\":{\n        \"downlinks\": [\n            {\n                \"f_port\": 1,\n                \"priority\": \"HIGH\",\n                \"confirmed\": true,\n                \"decoded_payload\": {\n                    \"command\": \"BUZZ_ON\"\n                }\n            }\n        ]\n    }\n    \n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1390,
+        "y": 620,
+        "wires": [
+            [
+                "8f3ef477ed4743ab",
+                "27612b4c8371f20a"
+            ]
+        ]
+    },
+    {
+        "id": "541122551aa52d2b",
+        "type": "function",
+        "z": "ec053adf86947d2b",
+        "name": "BUZZ_OFF",
+        "func": "return{\n    \"payload\":{\n        \"downlinks\": [\n            {\n                \"f_port\": 1,\n                \"priority\": \"HIGH\",\n                \"confirmed\": true,\n                \"decoded_payload\": {\n                    \"command\": \"BUZZ_OFF\"\n                }\n            }\n        ]\n    }\n    \n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1390,
+        "y": 660,
+        "wires": [
+            [
+                "8f3ef477ed4743ab",
+                "27612b4c8371f20a"
+            ]
+        ]
+    },
+    {
+        "id": "89036c15b5574818",
+        "type": "function",
+        "z": "ec053adf86947d2b",
+        "name": "LED_ON",
+        "func": "return{\n    \"payload\":{\n        \"downlinks\": [\n            {\n                \"f_port\": 1,\n                \"priority\": \"HIGH\",\n                \"confirmed\": true,\n                \"decoded_payload\": {\n                    \"command\": \"LED_ON\"\n                }\n            }\n        ]\n    }\n    \n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1380,
+        "y": 700,
+        "wires": [
+            [
+                "8f3ef477ed4743ab",
+                "27612b4c8371f20a"
+            ]
+        ]
+    },
+    {
+        "id": "0b2199ab7f43c2ee",
+        "type": "function",
+        "z": "ec053adf86947d2b",
+        "name": "LED_OFF",
+        "func": "return{\n    \"payload\":{\n        \"downlinks\": [\n            {\n                \"f_port\": 1,\n                \"priority\": \"HIGH\",\n                \"confirmed\": true,\n                \"decoded_payload\": {\n                    \"command\": \"LED_OFF\"\n                }\n            }\n        ]\n    }\n    \n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1380,
+        "y": 740,
+        "wires": [
+            [
+                "8f3ef477ed4743ab",
+                "27612b4c8371f20a"
+            ]
+        ]
+    },
+    {
+        "id": "27612b4c8371f20a",
+        "type": "debug",
+        "z": "ec053adf86947d2b",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1640,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "7ba42cd5cf0cc033",
+        "type": "mqtt-broker",
+        "name": "TTS",
+        "broker": "eu1.cloud.thethings.network",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
