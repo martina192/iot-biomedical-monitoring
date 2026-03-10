@@ -1,0 +1,73 @@
+2025-11-22 10:49:16,616 - INFO - MainThread - Connexió Serial USB establerta a /dev/pts/1 @ 9600 baud.
+2025-11-22 10:49:21,761 - ERROR - MainThread - ERROR: Ha fallat la connexió inicial de Bluetooth. [Errno 112] Host is down
+2025-11-22 10:49:21,762 - INFO - MainThread - Puerto serial cerrado.
+2025-11-22 10:49:37,449 - INFO - MainThread - Connexió Serial USB establerta a /dev/pts/1 @ 9600 baud.
+2025-11-22 10:49:39,230 - INFO - MainThread - Connectat a BITalino amb MAC: 98:D3:B1:FD:3D:BB
+2025-11-22 10:49:39,432 - INFO - MainThread - Adquisició iniciada a 1000 Hz en el Canal A1.
+2025-11-22 10:49:39,435 - INFO - DownlinkThread - Downlink Listener Iniciat.
+2025-11-22 10:49:39,435 - INFO - MainThread - Adquisició ECG en 1000 Hz. Enviament cada 30s.
+2025-11-22 10:49:39,511 - WARNING - MainThread - ALERTA: Buffer insuficient (50). Saltant enviament.
+2025-11-22 10:50:09,666 - WARNING - MainThread - ALERTA: Buffer insuficient (2950). Saltant enviament.
+2025-11-22 10:50:39,835 - INFO - MainThread - BPM Calculat: 47 (Basat en 5 pics R)
+2025-11-22 10:50:39,836 - WARNING - MainThread - DETECCIÓ D'ARRÍTMIA: Irregularitat R-R > 20% (Umbral: 255.05 mostres)
+2025-11-22 10:50:39,837 - INFO - MainThread - ENVIAT -> TLV (BPM=47, Arrítmia=1)
+2025-11-22 10:50:39,838 - INFO - MainThread - CICLE COMPLETADO. Buffer limpio.
+2025-11-22 10:50:43,316 - INFO - DownlinkThread - Buzzer (D2): ON
+2025-11-22 10:51:00,315 - INFO - MainThread - BITalino desconnectat.
+2025-11-22 10:51:00,317 - INFO - MainThread - Puerto serial cerrado.
+2025-11-22 10:51:40,400 - INFO - MainThread - Connexió Serial USB establerta a /dev/pts/1 @ 9600 baud.
+2025-11-22 10:51:41,253 - INFO - MainThread - Connectat a BITalino amb MAC: 98:D3:B1:FD:3D:BB
+2025-11-22 10:51:41,455 - INFO - MainThread - Adquisició iniciada a 1000 Hz en el Canal A1.
+2025-11-22 10:51:41,457 - INFO - DownlinkThread - Downlink Listener Iniciat.
+2025-11-22 10:51:41,458 - INFO - MainThread - Adquisició ECG en 1000 Hz. Enviament cada 30s.
+2025-11-22 10:51:41,546 - WARNING - MainThread - ALERTA: Buffer insuficient (50). Saltant enviament.
+2025-11-22 10:52:11,705 - WARNING - MainThread - ALERTA: Buffer insuficient (2950). Saltant enviament.
+2025-11-22 10:52:41,866 - INFO - MainThread - BPM Calculat: 129 (Basat en 13 pics R)
+2025-11-22 10:52:41,867 - WARNING - MainThread - DETECCIÓ D'ARRÍTMIA: Irregularitat R-R > 20% (Umbral: 92.93 mostres)
+2025-11-22 10:52:41,868 - INFO - MainThread - ENVIAT -> TLV (BPM=129, Arrítmia=1)
+2025-11-22 10:52:41,869 - INFO - MainThread - CICLE COMPLETADO. Buffer limpio.
+2025-11-22 10:52:45,148 - INFO - DownlinkThread - Buzzer (D2): ON
+2025-11-22 10:53:12,040 - WARNING - MainThread - ALERTA: Buffer insuficient (2950). Saltant enviament.
+2025-11-22 10:53:42,226 - INFO - MainThread - BPM Calculat: 86 (Basat en 8 pics R)
+2025-11-22 10:53:42,227 - WARNING - MainThread - DETECCIÓ D'ARRÍTMIA: Irregularitat R-R > 20% (Umbral: 139.06 mostres)
+2025-11-22 10:53:42,228 - INFO - MainThread - ENVIAT -> TLV (BPM=86, Arrítmia=1)
+2025-11-22 10:53:42,228 - INFO - MainThread - CICLE COMPLETADO. Buffer limpio.
+2025-11-22 10:54:12,412 - WARNING - MainThread - ALERTA: Buffer insuficient (2950). Saltant enviament.
+2025-11-22 10:54:41,338 - INFO - MainThread - BITalino desconnectat.
+2025-11-22 10:54:41,340 - INFO - MainThread - Puerto serial cerrado.
+2025-11-22 10:54:53,137 - INFO - MainThread - Connexió Serial USB establerta a /dev/pts/1 @ 9600 baud.
+2025-11-22 10:54:54,744 - INFO - MainThread - Connectat a BITalino amb MAC: 98:D3:B1:FD:3D:BB
+2025-11-22 10:54:54,946 - INFO - MainThread - Adquisició iniciada a 1000 Hz en el Canal A1.
+2025-11-22 10:54:54,948 - INFO - DownlinkThread - Downlink Listener Iniciat.
+2025-11-22 10:54:54,949 - INFO - MainThread - Adquisició ECG en 1000 Hz. Enviament cada 30s.
+2025-11-22 10:54:55,039 - WARNING - MainThread - ALERTA: Buffer insuficient (50). Saltant enviament.
+2025-11-22 10:55:25,216 - WARNING - MainThread - ALERTA: Buffer insuficient (2950). Saltant enviament.
+2025-11-22 10:55:55,390 - INFO - MainThread - BPM Calculat: 65 (Basat en 7 pics R)
+2025-11-22 10:55:55,392 - WARNING - MainThread - DETECCIÓ D'ARRÍTMIA: Irregularitat R-R > 20% (Umbral: 186.00 mostres)
+2025-11-22 10:55:55,392 - INFO - MainThread - ENVIAT -> TLV (BPM=65, Arrítmia=1)
+2025-11-22 10:55:55,393 - INFO - MainThread - CICLE COMPLETADO. Buffer limpio.
+2025-11-22 10:55:58,531 - INFO - DownlinkThread - Buzzer (D2): ON
+2025-11-22 10:56:08,534 - INFO - DownlinkThread - Buzzer (D2): OFF
+2025-11-22 10:56:17,961 - INFO - MainThread - BITalino desconnectat.
+2025-11-22 10:56:17,962 - INFO - MainThread - Puerto serial cerrado.
+2025-11-22 10:57:04,938 - INFO - MainThread - Connexió Serial USB establerta a /dev/pts/1 @ 9600 baud.
+2025-11-22 10:57:10,081 - ERROR - MainThread - ERROR: Ha fallat la connexió inicial de Bluetooth. [Errno 112] Host is down
+2025-11-22 10:57:10,083 - INFO - MainThread - Puerto serial cerrado.
+2025-11-22 10:57:21,772 - INFO - MainThread - Connexió Serial USB establerta a /dev/pts/1 @ 9600 baud.
+2025-11-22 10:57:25,460 - INFO - MainThread - Connectat a BITalino amb MAC: 98:D3:B1:FD:3D:BB
+2025-11-22 10:57:25,662 - INFO - MainThread - Adquisició iniciada a 1000 Hz en el Canal A1.
+2025-11-22 10:57:25,664 - INFO - DownlinkThread - Downlink Listener Iniciat.
+2025-11-22 10:57:25,665 - INFO - MainThread - Adquisició ECG en 1000 Hz. Enviament cada 30s.
+2025-11-22 10:57:25,748 - WARNING - MainThread - ALERTA: Buffer insuficient (50). Saltant enviament.
+2025-11-22 10:57:55,916 - WARNING - MainThread - ALERTA: Buffer insuficient (2950). Saltant enviament.
+2025-11-22 10:58:26,095 - INFO - MainThread - BPM Calculat: 111 (Basat en 11 pics R)
+2025-11-22 10:58:26,096 - WARNING - MainThread - DETECCIÓ D'ARRÍTMIA: Irregularitat R-R > 20% (Umbral: 107.88 mostres)
+2025-11-22 10:58:26,096 - INFO - MainThread - ENVIAT -> TLV (BPM=111, Arrítmia=1)
+2025-11-22 10:58:26,097 - INFO - MainThread - CICLE COMPLETADO. Buffer limpio.
+2025-11-22 10:58:29,600 - INFO - DownlinkThread - Buzzer (D2): ON
+2025-11-22 10:58:39,603 - INFO - DownlinkThread - Buzzer (D2): OFF
+2025-11-22 10:58:56,273 - WARNING - MainThread - ALERTA: Buffer insuficient (2950). Saltant enviament.
+2025-11-22 10:59:26,469 - INFO - MainThread - BPM Calculat: 64 (Basat en 7 pics R)
+2025-11-22 10:59:26,470 - WARNING - MainThread - DETECCIÓ D'ARRÍTMIA: Irregularitat R-R > 20% (Umbral: 188.07 mostres)
+2025-11-22 10:59:26,471 - INFO - MainThread - ENVIAT -> TLV (BPM=64, Arrítmia=1)
+2025-11-22 10:59:26,471 - INFO - MainThread - CICLE COMPLETADO. Buffer limpio.
