@@ -1,0 +1,60 @@
+services:
+  # ----------------------------------------------------
+  # 1. Node-RED (Lógica de Aplicación y Decodificación)
+  # ----------------------------------------------------
+  node-red:
+    image: nodered/node-red:latest
+    restart: always
+    ports:
+      - "1880:1880" # Interfaz Web de Node-RED
+    volumes:
+      - ./data/node-red:/data
+    depends_on:
+      - influxdb
+    user: "root" # Permite acceso para instalar paquetes
+
+  # ----------------------------------------------------
+  # 2. InfluxDB (Base de Datos de Series de Tiempo)
+  # ----------------------------------------------------
+  influxdb:
+    image: influxdb:3-core
+    container_name: influxdb3-container
+    ports:
+      - "8181:8181"
+    volumes:
+      - ~/.influxdb3_data:/root/.data  
+      - ~/.influxdb3_plugins:/plugins
+    command: influxdb3
+    restart: always
+
+  influxdb3-explorer:
+    image: influxdata/influxdb3-ui
+    container_name: influxdb3-explorer
+    restart: always
+    ports:
+      # Maps host port 8888 to container port 80 (standard HTTP access for UI)
+      - "8888:80" 
+      # Maps host port 8889 to container port 8888 (This seems redundant based on the source command,
+      # but is included for fidelity if the UI uses port 8888 internally for some reason)
+      - "8889:8888" 
+    command: ["--mode=admin"]
+    depends_on:
+      - influxdb # Ensure the database is running before the UI starts
+  
+
+  # ----------------------------------------------------
+  # 3. Grafana (Visualización Médica)
+  # ----------------------------------------------------
+  grafana:
+    image: grafana/grafana:latest
+    restart: always
+    ports:
+      - "3000:3000" # Interfaz Web de Grafana
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+    depends_on:
+      - influxdb
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=volkovlabs-form-panel
